@@ -4,16 +4,18 @@ interface Task {
     id: number
     name: string
     icon: string
+    active: boolean
+    minimize: boolean
 }
 
 interface State {
     tasks: Task[]
-    setTasks: (callback: (tasks: Task[]) => Task[]) => void;
+    setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
 const StateContext = createContext<State>({
     tasks: [],
-    setTasks: () => {}
+    setTasks: () => {},
 })
 
 export const Context = ({ children }: { children: React.ReactNode }) => {
